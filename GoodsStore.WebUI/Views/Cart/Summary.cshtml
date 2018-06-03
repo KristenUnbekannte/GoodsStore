@@ -1,0 +1,13 @@
+﻿@model GoodsStore.BusinessLogic.Services.Cart
+
+<div class="navbar-right">
+    <a href="../Cart/Index?returnUrl=Request.Url.PathAndQuery">
+        <span class="btn btn-success navbar-btn glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+    </a>
+</div>
+
+<div class="navbar-text navbar-right navbar_color">
+    <b>Ваша корзина:</b>
+    @Model.Lines.Sum(x => x.Quantity) шт.,
+    @Model.ComputeTotalValue() руб.
+</div>

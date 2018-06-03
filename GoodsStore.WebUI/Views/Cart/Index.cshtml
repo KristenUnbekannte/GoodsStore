@@ -1,0 +1,56 @@
+﻿@model GoodsStore.WebUI.Models.CartIndexViewModel
+
+@{
+    ViewBag.Title = "GoodsStore: ваша корзина";
+}
+<div class="cart">
+    <h3>Ваша корзина</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Товар</th>
+                <th class="text-center">Кол-во</th>
+                <th class="text-center">Размер</th>
+                <th class="text-right">Цена</th>
+                <th class="text-right">Общая цена</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var line in Model.Cart.Lines)
+            {
+                <tr>
+                    <td class="text-left">@line.Goods.Name</td>
+                    <td class="text-center">@line.Quantity</td>
+                    <td class="text-center">@line.Size.Name</td>
+                    <td class="text-right">@line.Goods.Price руб.</td>
+                    <td class="text-right">
+                        @(line.Quantity * line.Goods.Price) руб.
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                        {
+                            @Html.Hidden("GoodsId", line.Goods.GoodsId)
+                            @Html.Hidden("SizeId", line.Size.SizeId)
+                            @Html.HiddenFor(x => x.ReturnUrl)
+                            <input class="btn btn-sm btn-primary" type="submit" value="Удалить" />
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-right"><b>Итого:</b></td>
+                <td class="text-right">
+                    @Model.Cart.ComputeTotalValue() руб.
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="text-center">
+        <a class="btn btn-primary" href="/Goods/GoodsCards">Продолжить покупки</a>
+        @Html.ActionLink("Оформить заказ", "Checkout", null, new { @class = "btn btn-success" })
+    </div>
+</div>

@@ -1,0 +1,37 @@
+﻿@using GoodsStore.WebUI.Models
+@model MenuListViewModel
+
+@using (Ajax.BeginForm("Cards", "Goods",null, new AjaxOptions { UpdateTargetId = "listGoods_cards", HttpMethod = "get" }, new { @class = "navbar-form menu" }))
+{ 
+    <div class="form-group">
+        <label class="control-label">Поиск по названию:</label><br />
+        <input type="text" class="form-control" placeholder="Search" name="searchName" value="@Model.Search.searchName" /><br /><br />
+        <label class="control-label">Тип одежды:</label><br />
+        @foreach (var c in Model.ClothesTypes)
+        {
+            <label class="radio">
+                <input type="radio" name="CurrentClothesType" value="@c.ClothesTypeId"
+                       @(c.ClothesTypeId == Model.Search.CurrentClothesType ? "checked=\"checked\"" : "") />
+                <span class="radio__text">@c.Name</span>
+            </label><br />
+        }
+        <br /><label class="control-label">Категория: </label><br />
+        @Html.DropDownList("CurrentCategory", Model.Categories as SelectList, "Please select",
+                            htmlAttributes: new { @class = "form-control" })<br /><br />
+        <label class="control-label">Размер: </label><br />
+        @foreach (var s in Model.Sizes)
+        { 
+            <label class="radio">
+                <input type="radio" name="CurrentSize" value="@s.SizeId"
+                       @(s.SizeId == Model.Search.CurrentSize ? "checked=\"checked\"" : "") />
+                <span class="radio__text">@s.Name</span>
+            </label><br />
+        }
+        <br />
+        <label class="control-label">Ценовой диапазон: </label><br />
+        <input type="text" name="MinPrice" class="form-control price" placeholder="от" value="@Model.Search.MinPrice" />
+        <input type="text" name="MaxPrice" class="form-control price" placeholder="до" value="@Model.Search.MaxPrice" /><br /><br />
+        <a href="../Goods/GoodsCards" class="a_style">Сбросить настройки</a><br /><br />
+        <button type="submit" class="btn btn-success form-control">Поиск</button>
+    </div>
+}

@@ -1,0 +1,27 @@
+﻿@using GoodsStore.WebUI.Models
+@using GoodsStore.WebUI.HTMLHelpers
+@model ReviewsListViewModel
+
+<div>
+    <table class="table table-striped">
+        @foreach (var item in Model.Reviews)
+        {
+            <tr>
+                <td class="text-left"><b>@item.UserName</b><br />@item.Date.ToString()</td>
+                <td class="text-left">
+                    @item.Comment
+                </td>
+                <td style="width:130px;">
+                    <div class="rate_background">
+                        <div class="rate_bar" style="width:@((item.Rating*20)+"%");"></div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+    <div class="btn-group">
+        @Ajax.PageLinks(Model.PagingInfo, new AjaxOptions { UpdateTargetId = "review" }, "ListReviews", x => (
+                     new { goodsId = Model.Goods.GoodsId, page = x }))
+    </div>
+</div>
+

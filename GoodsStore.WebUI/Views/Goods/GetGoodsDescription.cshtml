@@ -1,0 +1,104 @@
+﻿@using GoodsStore.WebUI.Models
+@using GoodsStore.WebUI.HTMLHelpers
+
+@using GoodsStore.Domain.Entities
+@model ReviewsListViewModel
+
+@{
+    ViewBag.Title = "Описание товара";
+}
+<div class="description">
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-danger">@TempData["message"]</div>
+    }
+    <div class="description_head">
+        <div class="description_left_body">
+            <div class="description_for_image">
+                @if (Model.Goods.ImageData == null)
+                {
+                    <div class="description_image">Нет картинки</div>
+                }
+                else
+                {
+
+                    <img src="@Url.Action("GetImage", "Goods", new { Model.Goods.GoodsId })" class="description_image magniflier" />
+                }
+            </div>
+            <div class="description_reviews">
+                @using (Ajax.BeginForm("ListReviews", new { goodsId = Model.Goods.GoodsId }, new AjaxOptions { UpdateTargetId = "review", HttpMethod = "get" }))
+                {
+                    <button type="submit" class="btn btn-primary" onclick="OpenCloseReviews()">
+                        Отзывы
+                        <span class="badge">
+                            @Model.Goods.NumberOfReviews
+                        </span>
+                    </button>
+
+                }
+            </div>
+        </div>
+        <div class="description_right_body">
+            <div class="description_description">
+                <h3>@Model.Goods.Name</h3>
+                <p>@Model.Goods.Description</p>
+            </div>
+            <div class="rating_body">
+                <div class="rate_background">
+                    <div class="rate_bar" style="width:@((Model.Goods.Rating*20)+"%");"></div>
+                </div>
+                <div class="rating">
+                    @String.Format("{0:0.0}", Model.Goods.Rating)
+                </div>
+            </div>
+            <div class="description_right_container">
+                @using (Html.BeginForm("AddToCart", "Cart"))
+                {
+                    <p>Цена:</p>
+                    <h4>@Model.Goods.Price руб.</h4>
+                    <p>Размеры:</p>
+                    foreach (var s in Model.Goods.Sizes)
+                    {
+                        <div>
+                            <label class="radio values">
+                                <input type="radio" name="sizeId" value="@s.SizeId" />
+                                <span class="radio__text">@s.Name</span>
+                            </label>
+                        </div>
+                    }
+                    <p>Количество:</p>
+                    <input type="button" value="-" onclick="Decrease()" />
+                    <input type="text" value="1" name="quantity" id="quantity" readonly />
+                    <input type="button" value="+" onclick="Increase()" />
+                    <input type="hidden" name="goodsId" value="@Model.Goods.GoodsId" /><br /><br />
+                    <input type="submit" class="btn btn-primary" value="Добавить в корзину" />
+                    <a href="GoodsCards" class="btn btn-success">Вернуться на главную</a>
+                }
+            </div>
+        </div>
+    </div>
+    <div id="reviews" class="review_head" style="display:none">
+        @using (Html.BeginForm("AddReview", "Goods", FormMethod.Post))
+        {
+            <input type="hidden" id="rate" name="rate" value="0">
+            <input type="hidden" name="goodsId" value="@Model.Goods.GoodsId">
+            <div class="review_add">
+                <textarea name="comment" placeholder="Добавить отзыв"></textarea>
+                <div class="review_add_stars">
+                    <h5><b>Оценить:</b></h5>
+                    <div class="rate_background" id="stars_container" onclick="set_rate();">
+                        <div class="rate_bar" id="stars" style="width:0%;"></div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </button>
+            </div>
+        }
+        <div id="review">
+        </div>    
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/Scripts/ForImages.js")
+}

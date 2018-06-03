@@ -1,0 +1,15 @@
+﻿@using GoodsStore.WebUI.Models
+@using GoodsStore.WebUI.HTMLHelpers
+@model GoodsListViewModel
+@{
+    ViewBag.Title = "Админ панель: список товаров";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="admin">
+    <div class="admin_menu">
+        @Html.Action("MenuForAdmin", "Nav")
+    </div>
+    <div class="row panel admin_body" id="admin_body"> 
+        @Html.Partial("_PartialAdmin_Goods",Model)      
+    </div>
+</div>

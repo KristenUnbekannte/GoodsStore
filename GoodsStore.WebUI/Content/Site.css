@@ -1,0 +1,457 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    height: 100%;
+}
+
+html {
+    min-height: 100%;
+    position: relative;
+}
+
+footer {
+    text-align: center;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 100px;
+}
+
+.navbar a,
+.navbar_color {
+    color: lightgray !important;
+}
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+.span_height {
+    height: 34px;
+}
+
+.input_width {
+    width: 40px;
+}
+
+.glass {
+    width: 175px;
+    height: 175px;
+    position: absolute;
+    border-radius: 50%;
+    cursor: crosshair;
+    /* Создание эффекта стекла */
+    box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.85), 0 0 7px 7px rgba(0, 0, 0, 0.25), inset 0 0 40px 2px rgba(0, 0, 0, 0.25);
+    /* Изначально скрыто */
+    display: none;
+}
+/* Set width on the form input elements since they're 100% wide by default */
+
+.indent {
+    margin-left: 10px;
+    margin-right: 20px;
+}
+/*reviews*/
+
+.review_head {
+    width: 800px;
+    display: none;
+    border: 1px solid lightgray;
+    box-shadow: 0px 1px 20px 1px;
+}
+
+.review_add {
+    display: block;
+    overflow: auto;
+    box-shadow: 1px 1px 0px 0px;
+}
+
+    .review_add textarea {
+        width: 590px;
+        height: 80px;
+        float: left;
+        margin-right: 5px;
+    }
+
+    .review_add button {
+        height: 80px;
+        width: 73px;
+        float: right;
+    }
+
+.review_add_stars {
+    width: 130px;
+    float: left;
+    padding-top: 5px;
+}
+
+
+/*a*/
+a.a_style:hover {
+    text-decoration: none;
+    color: green;
+    cursor: pointer;
+}
+
+a.a_style {
+    width: 100%;
+    border: none;
+    display: inline-block;
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-align: center;
+    padding: 10px 0px 10px 0px;
+    font-weight: bold;
+    color: black;
+    background: -webkit-linear-gradient(right, #ffd800 33.3%,#f1df17.3%,#53d32d 66.6%, #2dc1c1 66.6%,#2dc1c1) bottom no-repeat;
+    background-size: 85% 5px;
+}
+
+/*Radio button*/
+.radio input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    margin: 10px 0 0 7px;
+}
+
+.radio__text {
+    position: relative;
+    font-weight: normal;
+    padding: 0 0 0 25px;
+    cursor: pointer;
+}
+
+    .radio__text:before {
+        content: '';
+        position: absolute;
+        top: -3px;
+        left: 0;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #CDD1DA;
+        border-radius: 50%;
+        background: #FFF;
+    }
+
+    .radio__text:after {
+        content: '';
+        position: absolute;
+        top: -3px;
+        left: 0;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 2px solid #CDD1DA;
+        background: #63b74a;
+        opacity: 0;
+        transition: .2s;
+    }
+
+.radio input:checked + .radio__text:after {
+    opacity: 1;
+}
+/*ListGoods*/
+.listGoods_body {
+    width: 1070px;
+    margin: auto;
+    border: 1px solid gray;
+    display: block;
+    overflow: auto;
+}
+
+.listGoods_menu {
+    width: 240px;
+    float: left;
+}
+
+.listGoods_cards {
+    float: left;
+    width: 825px;
+    border-left: 1px solid gray;
+    border-bottom: 1px solid gray;
+    border-bottom: none;
+    padding: 10px 0px 10px 10px;
+}
+
+.listGoods_card {
+    float: left;
+}
+
+/*Cards*/
+.cards {
+    height: 400px;
+    width: 250px;
+    margin: 10px 10px 20px 10px;
+    box-shadow: 1px 1px 1px 0px;
+}
+
+    .cards:hover {
+        transform: scale(1.04);
+        box-shadow: 0 0 7px #28ed74;
+        transition: .2s all;
+        z-index: 10000;
+    }
+
+.card_for_image {
+    height: 220px;
+    width: 250px;
+    text-align: center;
+}
+
+.cards_image {
+    max-height: 220px;
+    max-width: 230px;
+}
+
+.cards_body {
+    height: 180px;
+}
+
+.cards_description {
+    height: 80px;
+    overflow: hidden;
+}
+/*Rating*/
+.rating_body {
+    width: 250px;
+}
+
+.rate_background {
+    float: left;
+    position: relative;
+    width: 125px;
+    height: 25px;
+    background: url('../Resources/gray_star_25px.png') repeat-x;
+}
+
+.rate_bar {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 25px;
+    background: url('../Resources/gold_star_25px.png') repeat-x;
+}
+
+.rating {
+    float: left;
+    margin-left: 8px;
+    font-size: 20px;
+}
+
+.rate_background#stars_container {
+    cursor: pointer;
+}
+/*Menu*/
+.menu {
+    margin-top: 10px;
+    padding: 10px;
+    width: 220px;
+}
+
+input.price {
+    margin-right: 2%;
+    float: left;
+    width: 48%;
+}
+
+/*Description*/
+.description {
+    margin: auto;
+    width: 800px;
+}
+
+.description_head {
+    margin-top: 20px;
+    height: 485px;
+    width: 100%;
+    border: 1px solid lightgray;
+    box-shadow: 0px 1px 20px 1px;
+}
+
+.description_left_body {
+    width: 50%;
+    height: 100%;
+    float: left;
+    position: relative;
+    padding: 5px;
+}
+
+.description_for_image {
+    height: 400px;
+    width: 400px;
+    float: left;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.description_image {
+    max-height: 380px;
+    max-width: 350px;
+}
+
+.description_reviews {
+    position: absolute;
+    bottom: 0;
+}
+
+.description_right_body {
+    height: 100%;
+    width: 50%;
+    padding: 0 10px 0 12px;
+    float: right;
+}
+
+.description_description {
+    max-height: 160px;
+    overflow: hidden;
+}
+
+.description_right_container {
+    padding-top: 10px;
+    width: 400px;
+    clear: both;
+}
+
+    .description_right_container p {
+        clear: both;
+        font-weight: bold;
+    }
+
+    .description_right_container h4 {
+        font-size: 24px;
+    }
+
+label.values {
+    float: left;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+input#quantity {
+    width: 60px;
+}
+
+/*Cart*/
+.cart {
+    width: 900px;
+    margin: auto;
+    border: 1px solid lightgray;
+    box-shadow: 1px 1px 10px 1px;
+    margin-top: 40px;
+    padding: 20px;
+}
+
+.shipping_details {
+    margin-top: 40px;
+    margin: auto;
+    width: 480px;
+    border: 1px solid lightgray;
+    box-shadow: 1px 1px 10px 1px;
+    padding: 20px;
+}
+
+/*Account*/
+.login {
+    width: 450px;
+    border: 1px solid lightgray;
+    box-shadow: 1px 1px 10px 1px;
+    margin: auto;
+    padding: 0 50px 30px 50px;
+}
+
+.register {
+    width: 400px;
+    border: 1px solid lightgray;
+    box-shadow: 1px 1px 10px 1px;
+    margin: auto;
+    padding: 0 50px 30px 50px;
+}
+
+.forgot_password {
+    width: 400px;
+    border: 1px solid lightgray;
+    box-shadow: 1px 1px 10px 1px;
+    margin: auto;
+    padding: 0 50px 30px 50px;
+}
+
+.reset_password {
+    width: 400px;
+    border: 1px solid lightgray;
+    box-shadow: 1px 1px 10px 1px;
+    margin: auto;
+    padding: 0 50px 30px 50px;
+}
+
+    .reset_password label,
+    .forgot_password label,
+    .register label,
+    .login label {
+        padding-bottom: 10px;
+    }
+
+.text_center {
+    margin-top: 50px;
+    text-align: center;
+}
+
+/*Admin*/
+.admin {
+    width: 920px;
+    margin: auto;
+    border: 1px solid gray;
+    border-bottom: none;
+    display: block;
+    overflow: auto;
+}
+
+.admin_body {
+    float: left;
+    width: 675px;
+    padding: 10px 0px 0px 20px;
+    border-bottom: none;
+}
+
+.admin_body_small {
+    width: 500px;
+    margin: auto;
+    display: block;
+    overflow: auto;
+}
+
+.admin_menu {
+    width: 235px;
+    float: left;
+    padding: 0px 10px 0px 10px;
+}
+
+.admin_body_orders {
+    width: 800px;
+    margin: auto;
+    display: block;
+    overflow: auto;
+}
+
+.admin_view {
+    margin: auto;
+    max-width: 95%;
+    width: 750px;
+}
+
+.edit_goods_right {
+    float: right;
+    width: 52%;
+}
+
+.edit_goods_left {
+    float: left;
+    width: 42%;
+}

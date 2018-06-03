@@ -1,0 +1,43 @@
+﻿@model GoodsStore.BusinessLogic.Models.ReviewModel
+
+@{
+    ViewBag.Title = "Админ панель: просмотр отзыва";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="admin_view">
+    <div class="panel panel-primary">
+        <div class=" panel-heading">
+            <h3>Пpосмотр отзывов</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table">
+                <tr>
+                    <th>Ник:</th>
+                    <td>@Model.UserName</td>
+                </tr>
+                <tr>
+                    <th>Tовара:</th>
+                    <td>@Model.GoodsId. @Model.GoodsName</td>
+                </tr>
+                <tr>
+                    <th>Дата:</th>
+                    <td>@Model.Date</td>
+                </tr>
+                <tr>
+                    <th>Оценка:</th>
+                    <td><span class="glyphicon glyphicon-star" /> @Model.Rating</td>
+                </tr>
+                <tr>
+                    <th>Комментарий:</th>
+                    <td>@Model.Comment</td>
+                </tr>
+            </table>
+        </div>
+        <div class="panel-footer">
+            @Html.ActionLink("Вернуться к списку отзывов", "ListReviews", null, new
+            {
+                @class = "btn btn-success"
+            })
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+﻿@using GoodsStore.WebUI.Models
+@using GoodsStore.WebUI.HTMLHelpers
+@model GoodsListViewModel
+
+@{
+    ViewBag.Title = "Товары";
+}
+<div class="listGoods_body">
+    <div class="listGoods_menu">
+        @Html.Action("Menu", "Nav")
+    </div>
+    <div class="listGoods_cards" id="listGoods_cards">
+         @Html.Partial("_PartialCards", Model)
+    </div>
+  
+</div>

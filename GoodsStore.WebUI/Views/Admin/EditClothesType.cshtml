@@ -1,0 +1,31 @@
+﻿@model GoodsStore.BusinessLogic.Models.ClothesTypeModel
+
+@{
+    ViewBag.Title = "Админ панель: редактирование типа одежды";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="admin_body_small table-bordered">
+    <div class="panel">
+        <div class="panel-heading">
+            <h3>Редактирование типа одежды «@Model.Name»</h3>
+        </div>
+
+        @using (Html.BeginForm("EditClothesType", "Admin",
+         FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="panel-body">
+                @Html.HiddenFor(m => m.ClothesTypeId)
+                @Html.Label("Название")
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Name)
+            </div>
+            <div class="panel-footer">
+                <input type="submit" value="Сохранить" class="btn btn-success" />
+                @Html.ActionLink("Отменить изменения и вернуться к списку", "ListClothesTypes", null, new
+            {
+                @class = "btn btn-primary"
+            })
+            </div>
+        }
+    </div>
+</div>

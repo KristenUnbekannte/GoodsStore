@@ -1,0 +1,78 @@
+﻿@model GoodsStore.BusinessLogic.Models.GoodsModel
+
+@{
+    ViewBag.Title = "Админ панель: добавление товара";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="admin_view">
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h3>Добавление товара</h3>
+        </div>
+
+        @using (Html.BeginForm("EditGoods", "Admin",
+         FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="panel-body">
+                <div class="edit_goods_left">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Name)
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Name)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.CategoryId)
+                        @Html.DropDownList("CategoryId", ViewBag.Categories as SelectList,
+                            htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.CategoryId)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.ClothesTypeId)
+                        @Html.DropDownList("ClothesTypeId", ViewBag.ClothesTypes as SelectList,
+                            htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.ClothesTypeId)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Price)
+                        @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Price)
+                    </div>
+                </div>
+
+                <div class="edit_goods_right">
+                    <div class="form-group">
+                        <label>Размеры</label><br />
+                        @foreach (var item in ViewBag.Sizes)
+                        {
+                            <input type="checkbox" name="selectedSizes" value="@item.SizeId" />@item.Name
+                        }
+                    </div>
+                    <div class="form-group">
+                        <div style="position:relative;">
+                            <label>Картинка</label>
+                            <a class='btn' href='javascript:;'>
+                                Выберите файл...
+                                <input type="file" name="Image" size="40"
+                                       style="position:absolute;z-index:2;top:0;
+                                left:0;filter: alpha(opacity=0); opacity:0;
+                                background-color:transparent;color:transparent;"
+                                       onchange='$("#upload-file-info").html($(this).val());'>
+                            </a>
+                            <span class='label label-info' id="upload-file-info"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" style="clear:both;">
+                    @Html.LabelFor(m => m.Description)
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = 5 })
+                    @Html.ValidationMessageFor(m => m.Description)
+                </div>
+            </div>
+            <div class="panel-footer">
+                <input type="submit" value="Сохранить" class="btn btn-success" />
+                @Html.ActionLink("Отменить изменения и вернуться к списку", "ListGoods", null, new { @class = "btn btn-primary" })
+            </div>
+        }
+    </div>
+</div>

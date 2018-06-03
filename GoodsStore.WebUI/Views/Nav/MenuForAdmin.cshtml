@@ -1,0 +1,22 @@
+﻿@using GoodsStore.WebUI.Models
+@model MenuListViewModel
+
+@using (Ajax.BeginForm("Goods", "Admin",null, new AjaxOptions { UpdateTargetId = "admin_body", HttpMethod = "get" }, new { @class = "navbar-form menu" }))
+{
+    <div class="form-group">
+        <label class="control-label">Тип: </label><br />
+        @foreach (var c in Model.ClothesTypes)
+        {
+            <label class="radio">
+                <input type="radio" name="CurrentClothesType" value="@c.ClothesTypeId"
+                       @(c.ClothesTypeId == Model.Search.CurrentClothesType ? "checked=\"checked\"" : "") />
+                <span class="radio__text">@c.Name</span>
+            </label><br />
+        }
+        <br /><label class="control-label">Категория: </label><br />
+        @Html.DropDownList("CurrentCategory", Model.Categories as SelectList, "Выберите...",
+                            htmlAttributes: new { @class = "form-control" })<br /><br />
+        <a href="ListGoods" class="a_style">Сбросить настройки</a><br /><br />
+        <button type="submit" class="btn btn-success form-control">Поиск</button>
+    </div>
+}

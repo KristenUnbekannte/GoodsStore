@@ -1,0 +1,23 @@
+﻿@using GoodsStore.WebUI.Models
+@using GoodsStore.WebUI.HTMLHelpers
+@model GoodsListViewModel
+
+
+<div>
+    @Html.Partial("GoodsSummary", Model.Goods)
+</div>
+<div class="btn-group pull-right">
+    @Ajax.PageLinks(Model.PagingInfo, new AjaxOptions { UpdateTargetId = "listGoods_cards" }, "Cards", x => (
+            new
+            {
+                Model.Search.CurrentClothesType,
+                Model.Search.CurrentCategory,
+                Model.Search.CurrentSize,
+                Model.Search.MaxPrice,
+                Model.Search.MinPrice,
+                Model.Search.searchName,
+                page = x
+            }))
+</div>
+
+

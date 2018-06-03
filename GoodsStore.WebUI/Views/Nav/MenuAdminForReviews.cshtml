@@ -1,0 +1,17 @@
+﻿@model GoodsStore.WebUI.Models.MenuForReviewListModel
+
+@using (Ajax.BeginForm("Reviews", "Admin",null, new AjaxOptions { UpdateTargetId = "admin_body", HttpMethod = "get" }, new { @class = "navbar-form menu" }))
+{
+    <div class="form-group">
+        <label class="control-label">Тип: </label>
+        @Html.DropDownList("goodsId", Model.Goods as SelectList, "Выберите...",
+                            htmlAttributes: new { @class = "form-control" })<br />
+        <label class="control-label">Рейтинг: </label><br />
+        <input type="text" name="rating" class="form-control" placeholder="Рейтинг" value="@Model.Search.rating"/><br /><br />
+        <label class="control-label">Ник пользователя: </label><br />
+        <input type="text" name="UserName" class="form-control" placeholder="Ник" value="@Model.Search.UserName"/><br /><br />
+        <a href="ListReviews" class="a_style">Сбросить настройки</a><br /><br />
+        <button type="submit" class="btn btn-success form-control">Поиск</button>
+    </div>
+}
+

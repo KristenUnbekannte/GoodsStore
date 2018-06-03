@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/bootstrap")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/js")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                @Html.ActionLink("BigSales - магазин одежды", "GoodsCards", "Goods", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse">
+                @Html.Action("Summary", "Cart")
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+    <div class="body-content" id="body_context">
+        @RenderBody()
+    </div>
+    <footer>
+        <hr />
+        <p>&copy; @DateTime.Now.Year – интернет-магазин одежды BigSales</p>
+    </footer>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

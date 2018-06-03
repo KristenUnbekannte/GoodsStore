@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/bootstrap")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/js")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="container">
+            <div class="navbar-header" style="min-width:830px;">
+
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a class="navbar-brand" href="/Goods/GoodsCards"><span class="glyphicon glyphicon-home"/></a></li>
+                        <li class="active"><a class="navbar-brand" href="/Admin/ListGoods">Товары</a></li>
+                        <li class="active"><a class="navbar-brand" href="/Admin/ListSizes">Размеры</a></li>
+                        <li class="active"><a class="navbar-brand" href="/Admin/ListCategories">Категории</a></li>
+                        <li class="active"><a class="navbar-brand" href="/Admin/ListClothesTypes">Типы</a></li>
+                        <li class="active"><a class="navbar-brand" href="/Admin/ListOrders">Заказы</a></li>
+                        <li class="active"><a class="navbar-brand" href="/Admin/ListReviews">Отзывы</a></li>
+                        @*<li class="active">@Ajax.ActionLink("Товар", "ListGoods", "Admin", new AjaxOptions { UpdateTargetId = "body_context" }, new { @class = "navbar-brand" })</li>
+                        <li class="active">@Ajax.ActionLink("Размеры", "ListSizes", "Admin", new AjaxOptions { UpdateTargetId = "body_context" }, new { @class = "navbar-brand" })</li>
+                        <li class="active">@Ajax.ActionLink("Категории", "ListCategories", "Admin", new AjaxOptions { UpdateTargetId = "body_context" }, new { @class = "navbar-brand" })</li>
+                        <li class="active">@Ajax.ActionLink("Типы", "ListClothesTypes", "Admin", new AjaxOptions { UpdateTargetId = "body_context" }, new { @class = "navbar-brand" })</li>
+                        <li class="active">@Ajax.ActionLink("Заказы", "Orders", "Admin", new AjaxOptions { UpdateTargetId = "body_context" }, new { @class = "navbar-brand" })</li>
+                        <li class="active">@Ajax.ActionLink("Отзывы", "ListReviews", "Admin", new AjaxOptions { UpdateTargetId = "body_context" }, new { @class = "navbar-brand" })</li>*@
+                    </ul>
+
+                <div class="navbar-right">
+                    <form class="navbar-form" role="search" method="get" src="/Admin/List">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="searchName" placeholder="Search">
+                        </div>
+                        <button type="submit" class="btn btn-success">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div>
+        @if (TempData["message"] != null)
+        {
+            <div class="alert alert-success">@TempData["message"]</div>
+        }
+        <div class="body-content" id="body_context">
+            @RenderBody()
+        </div>
+    </div>
+    <footer>
+        <hr />
+        <p>&copy; @DateTime.Now.Year – интернет-магазин одежды BigSales</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,52 @@
+﻿@model GoodsStore.WebUI.Models.OrdersListViewModel
+
+@{
+    ViewBag.Title = "Админ панель: список заказов";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="admin_body_orders" id="admin_body">
+    <div class="panel panel-primary">
+        <div class=" panel-heading">
+            <h4>Список заказов</h4>
+        </div>
+        <table class="table table-striped table-condensed">
+            <tr>
+                <th class="text-center">ID</th>
+                <th class="text-left">Адрес</th>
+                <th class="text-center">Город</th>
+                <th class="text-center">Страна</th>
+                <th class="text-right">Общая стоимость</th>
+                <th class="text-center">Дата</th>
+                <th class="text-center">Действие</th>
+            </tr>
+            @foreach (var item in Model.Orders)
+            {
+                <tr>
+                    <td class="text-center">@item.OrderId.</td>
+                    <td class="text-left">@item.Address</td>
+                    <td class="text-center">@item.City</td>
+                    <td class="text-center">@item.Country</td>
+                    <td class="text-right">@item.TotalPrice руб.</td>
+                    <td class="text-right">@item.Date.ToShortDateString()</td>
+                    <td class="text-center">
+                        @using (Html.BeginForm("OrderDetails", "Admin"))
+                        {
+                            @Html.Hidden("OrderId", item.OrderId)
+                            <button type="submit" class="btn btn-success btn-xs">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                            </button>
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="btn-group pull-right">
+            @Ajax.PageLinks(Model.PagingInfo, new AjaxOptions { UpdateTargetId = "admin_body" }, "ListOrders", x => (
+            new
+            {
+                Model.searchName,
+                page = x
+            }))
+    </div>
+</div>

@@ -1,0 +1,14 @@
+﻿@model GoodsStore.WebUI.Models.ReviewsListViewModel
+
+@{
+    ViewBag.Title = "Админ панель: список отзывов";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="admin">
+    <div class="admin_menu">
+        @Html.Action("MenuAdminForReviews", "Nav")
+    </div>
+    <div class="row panel admin_body" id="admin_body">
+        @Html.Partial("_PartialAdmin_Reviews",Model)
+    </div>
+</div>

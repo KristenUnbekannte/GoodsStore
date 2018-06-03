@@ -1,0 +1,31 @@
+﻿@model GoodsStore.BusinessLogic.Models.SizeModel
+
+@{
+    ViewBag.Title = "Админ панель: редактирование размера одежды";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="admin_body_small table-bordered">
+    <div class="panel">
+        <div class="panel-heading">
+            <h3>Редактирование размера «@Model.Name»</h3>
+        </div>
+
+        @using (Html.BeginForm("EditSize", "Admin",
+         FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="panel-body">
+                @Html.HiddenFor(m => m.SizeId)
+                @Html.Label("Название")
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Name)
+            </div>
+            <div class="panel-footer">
+                <input type="submit" value="Сохранить" class="btn btn-success" />
+                @Html.ActionLink("Отменить изменения и вернуться к списку", "ListSizes", null, new
+            {
+                @class = "btn btn-primary"
+            })
+            </div>
+        }
+    </div>
+</div>
